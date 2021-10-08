@@ -34,12 +34,13 @@ public class RequestParamServlet extends HttpServlet {
         System.out.println();
 
         System.out.println("[전체 파라미터 Map 조회] - start");
+
         Map<String, String[]> parameterMap = request.getParameterMap();
+        //System.out.println("parameterMap = " + parameterMap.get("username"));
         for (String s : parameterMap.keySet()) {
             System.out.println("parameterMap = " + parameterMap.get(s)[0]);
             System.out.println("[전체 파라미터 Map 조회] - end");
         }
-        System.out.println(parameterMap);
 
         System.out.println();
 
