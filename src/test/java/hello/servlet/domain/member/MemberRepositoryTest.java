@@ -57,6 +57,7 @@ class MemberRepositoryTest {
         //then
         List<Member> result = memberRepository.findAll();
         assertThat(result.size()).isEqualTo(2);
+        assertThat(result).contains(member1, member2);
     }
 
     @Test
