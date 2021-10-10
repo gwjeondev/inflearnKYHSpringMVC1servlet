@@ -1,0 +1,26 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="hello.servlet.domain.member.MemberRepository" %>
+<%@ page import="hello.servlet.domain.member.Member" %>
+<%
+    //request, response 그냥 사용 가능, jsp도 서블릿기반으로.. 문법상 그냥 지원 되는 것.
+    MemberRepository memberRepository = MemberRepository.getInstance();
+    String username = request.getParameter("username");
+    int age = Integer.parseInt(request.getParameter("age"));
+
+    Member member = new Member(username, age);
+    memberRepository.save(member);
+%>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<h1>성공</h1>
+<ul>
+    <li>id=<%=member.getId()%></li>
+    <li>username=<%=member.getUsername()%></li>
+    <li>age=<%=member.getAge()%></li>
+</ul>
+<a href="/index.html">메인</a>
+</body>
+</html>
