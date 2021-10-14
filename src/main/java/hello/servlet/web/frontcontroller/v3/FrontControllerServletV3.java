@@ -35,19 +35,22 @@ public class FrontControllerServletV3 extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
 
-        Map<String, String> paramMap = createParamMap(request);
-        ModelView mv = controllerV3.process(paramMap);
+        Map<String, String> paramMap = createParamMap(request); //parameter를 모두 가져온다
+        ModelView mv = controllerV3.process(paramMap); //가져온 parameter를 controller에 전달
 
-        String viewName = mv.getViewName();
-        MyView view = viewResolver(viewName);
+        String viewName = mv.getViewName(); //컨트롤러가 반환한 modelview의 view name을 가져온다
+        MyView view = viewResolver(viewName); //view name을 resolver에 전달하여 물리적인 주소로 변환하고 MyView를 반환받는다.
 
+        //view의 render에 model과 req, res를 전달하면 view의 render는 mv의 데이터가 있으면 req의 attribute에 set하고 지정된 물리적인 주소를 forward한다.
         view.render(mv.getModel(), request, response);
     }
 
+    //논리적인 주소를 물리적인 주소로 변환
     private MyView viewResolver(String viewName) {
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");
     }
 
+    //request받은 parameter가 있다면 반복을 통해서 paramMap에 저장후 리턴한다
     private Map<String, String> createParamMap(HttpServletRequest request) {
         Map<String, String> paramMap = new HashMap<>();
         request.getParameterNames().asIterator()

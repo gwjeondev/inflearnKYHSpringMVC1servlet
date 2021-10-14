@@ -20,11 +20,12 @@ public class MyView {
     }
 
     public void render(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        modelToRequestAttribute(model, request);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(viewPath);
-        requestDispatcher.forward(request, response);
+        modelToRequestAttribute(model, request); //model에 담긴 데이터를 모두 request setattribute에 저장한다.
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(viewPath); //사전에 지정한 viewPath를 dispatcher 상태에 둔다.
+        requestDispatcher.forward(request, response); //forward한다.
     }
 
+    //전달받은 model데이터를 request attribute에 모두 저장한다.
     private void modelToRequestAttribute(Map<String, Object> model, HttpServletRequest request) {
         model.forEach((key, value) -> request.setAttribute(key, value));
     }
