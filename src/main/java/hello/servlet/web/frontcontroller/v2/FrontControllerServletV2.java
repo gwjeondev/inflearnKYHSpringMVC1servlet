@@ -33,7 +33,6 @@ public class FrontControllerServletV2 extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         ControllerV2 controllerV2 = controllerMap.get(requestURI);
-
         if(controllerV2 == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
