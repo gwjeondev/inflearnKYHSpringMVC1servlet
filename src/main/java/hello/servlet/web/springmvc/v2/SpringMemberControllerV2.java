@@ -10,26 +10,28 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
+@RequestMapping("/springmvc/v2/members")
 public class SpringMemberControllerV2 {
 
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
-    @RequestMapping("/springmvc/v2/members/new-form")
+    @RequestMapping("/new-form")
     public ModelAndView form() {
         System.out.println("SpringMemberFormControllerV1.process");
         return new ModelAndView("new-form");
     }
 
-    @RequestMapping("/springmvc/v2/members")
+    @RequestMapping
     public ModelAndView members() {
         List<Member> members = memberRepository.findAll();
         ModelAndView mv = new ModelAndView("members");
-        mv.addObject("members", members);
+        mv.addObject("members", members); //model에 값 add.
 
         return mv;
     }
 
-    @RequestMapping("/springmvc/v2/members/save")
+    // /springmvc/v2/members
+    @RequestMapping("/save")
     public ModelAndView save(HttpServletRequest request) {
         String username = request.getParameter("username");
         int age = Integer.parseInt(request.getParameter("age"));
