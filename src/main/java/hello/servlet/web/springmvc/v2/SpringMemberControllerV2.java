@@ -17,10 +17,10 @@ public class SpringMemberControllerV2 {
 
     @RequestMapping("/new-form")
     public ModelAndView form() {
-        System.out.println("SpringMemberFormControllerV1.process");
         return new ModelAndView("new-form");
     }
 
+    // /springmvc/v2/members
     @RequestMapping
     public ModelAndView members() {
         List<Member> members = memberRepository.findAll();
@@ -30,7 +30,6 @@ public class SpringMemberControllerV2 {
         return mv;
     }
 
-    // /springmvc/v2/members
     @RequestMapping("/save")
     public ModelAndView save(HttpServletRequest request) {
         String username = request.getParameter("username");
